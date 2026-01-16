@@ -1,0 +1,120 @@
+<mxfile host="65bd71144e">
+    <diagram name="Arquitectura Cloud Detallada" id="0">
+        <mxGraphModel dx="1170" dy="938" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="azure" value="Microsoft Azure" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="150" y="120" width="1120" height="640" as="geometry"/>
+                </mxCell>
+                <mxCell id="rg" value="Resource Group" style="rounded=1;fillColor=#ffffff;strokeColor=#6c8ebf;dashed=1;verticalAlign=top;" parent="azure" vertex="1">
+                    <mxGeometry x="20" y="40" width="1080" height="580" as="geometry"/>
+                </mxCell>
+                <mxCell id="vnet" value="Internal Network / VNet" style="rounded=1;fillColor=#f5f5f5;strokeColor=#999999;dashed=1;verticalAlign=top;" parent="rg" vertex="1">
+                    <mxGeometry x="20" y="60" width="760" height="420" as="geometry"/>
+                </mxCell>
+                <mxCell id="cae" value="Container Apps Environment" style="rounded=1;fillColor=#eef5ff;strokeColor=#4a86e8;dashed=1;verticalAlign=top;" parent="vnet" vertex="1">
+                    <mxGeometry x="20" y="50" width="720" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe" value="Frontend&#xa;Azure Container App" style="rounded=1;fillColor=#cce5ff;strokeColor=#004085" parent="cae" vertex="1">
+                    <mxGeometry x="30" y="70" width="220" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="be" value="Backend&#xa;Azure Container App" style="rounded=1;fillColor=#cce5ff;strokeColor=#004085" parent="cae" vertex="1">
+                    <mxGeometry x="290" y="70" width="220" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="mi" value="Managed Identity" style="rounded=1;fillColor=#e6e6e6;strokeColor=#666666" parent="cae" vertex="1">
+                    <mxGeometry x="550" y="70" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_fe_be" style="endArrow=block" parent="cae" source="fe" target="be" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="db" value="Azure SQL Database" style="rounded=1;fillColor=#d4edda;strokeColor=#155724" parent="vnet" vertex="1">
+                    <mxGeometry x="220" y="290" width="220" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="blob" value="Azure Blob Storage" style="rounded=1;fillColor=#d4edda;strokeColor=#155724" parent="vnet" vertex="1">
+                    <mxGeometry x="480" y="290" width="240" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_be_db" style="endArrow=block;edgeStyle=orthogonalEdgeStyle;" parent="vnet" source="be" target="db" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_be_blob" style="endArrow=block;edgeStyle=orthogonalEdgeStyle;" parent="vnet" source="be" target="blob" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="kv" value="Azure Key Vault&#xa;(Secrets)" style="rounded=1;fillColor=#fde2e2;strokeColor=#b85450" parent="rg" vertex="1">
+                    <mxGeometry x="820" y="120" width="250" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="log" value="Log Analytics Workspace" style="rounded=1;fillColor=#fff3cd;strokeColor=#856404" parent="rg" vertex="1">
+                    <mxGeometry x="820" y="220" width="250" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="appi" value="Application Insights" style="rounded=1;fillColor=#fff3cd;strokeColor=#856404" parent="rg" vertex="1">
+                    <mxGeometry x="820" y="300" width="250" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="acr" value="Azure Container Registry (ACR)" style="rounded=1;fillColor=#e1f5fe;strokeColor=#0277bd" parent="rg" vertex="1">
+                    <mxGeometry x="820" y="400" width="250" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_mi_kv" style="endArrow=block;dashed=1;edgeStyle=orthogonalEdgeStyle;" parent="rg" source="mi" target="kv" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="950" y="210"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_fe_log" style="endArrow=block;dashed=1;edgeStyle=orthogonalEdgeStyle;" parent="rg" source="fe" target="log" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="180" y="150"/>
+                            <mxPoint x="810" y="150"/>
+                            <mxPoint x="810" y="250"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_be_log" style="endArrow=block;dashed=1;edgeStyle=orthogonalEdgeStyle;" parent="rg" source="be" target="log" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="560" y="210"/>
+                            <mxPoint x="560" y="250"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_fe_appi" style="endArrow=block;dashed=1;edgeStyle=orthogonalEdgeStyle;" parent="rg" source="fe" target="appi" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="180" y="330"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_be_appi" style="endArrow=block;dashed=1;edgeStyle=orthogonalEdgeStyle;" parent="rg" source="be" target="appi" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="440" y="330"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_acr_fe" style="endArrow=block;dashed=1;rounded=1;edgeStyle=orthogonalEdgeStyle;" parent="rg" source="acr" target="fe" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_acr_be" style="endArrow=block;dashed=1;edgeStyle=orthogonalEdgeStyle;" parent="rg" source="acr" target="be" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="470" y="430"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="cicd" value="CI/CD&#xa;(Azure DevOps or GitHub Actions)" style="rounded=1;fillColor=#ffffff;strokeColor=#000000;dashed=1" parent="1" vertex="1">
+                    <mxGeometry x="1310" y="555" width="240" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_user_fe" style="endArrow=block;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="2" target="fe" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="129.9999999999975" y="360" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_cicd_acr" style="endArrow=block" parent="1" source="cicd" target="acr" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="340" width="30" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
