@@ -1,0 +1,22 @@
+# Variables for resource group module
+resource_group_name = "poc-cloud-architecture-rg"
+location            = "East US"
+
+# Variables for observability module
+observability_name = "poc-cloud-architecture-law"
+
+# Variables for storage account module
+storage_account_name = "poccloudarchitecturesa"
+environment          = "poc"
+
+# Variables for SQL database module
+db_location       = "westus2"
+sql_server_name   = "poccloudarchitecturesqlsrvv2"
+sql_database_name = "poccloudarchitecturesqldb"
+
+# Variables for container registry module
+container_registry_name = "poccloudarchitecturacr"
+
+# Variables for container apps module
+backend_image = "traefik/whoami"
+frontend_image = "nginx:alpine"
